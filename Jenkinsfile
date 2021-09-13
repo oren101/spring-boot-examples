@@ -2,6 +2,7 @@ pipeline {
   agent {
     node {
       label 'Centos_nodejs'
+     
     }
     stage('check out code') {
       steps {
