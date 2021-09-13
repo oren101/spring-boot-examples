@@ -1,40 +1,41 @@
 pipeline {
-    agent {
-        label 'master'
-    }
- }
+  agent any
   stages {
-    stage('CheckoutCode') {
+    stage('check out code') {
       steps {
-        git(url: 'https://github.com/oren101/spring-boot-examples.git', branch: ' oren101-2_sol ', changelog: true)
+        git(url: 'https://github.com/oren101/spring-boot-examples.git', branch: 'oren101-2_sol ', changelog: true)
       }
     }
 
-    stage('mvn compile') {
+    stage('maven compile') {
       steps {
         sh '''cd spring-boot-package-war
 mvn compile'''
       }
     }
 
-    stage('Test {mvn test}') {
+    stage('test') {
       steps {
+        sh '''cd spring-boot-package-war
+mvn test'''
         sh '''cd spring-boot-package-war
 mvn test'''
       }
     }
 
-    stage('Package {mvn clean package}') {
-      steps {
-        sh '''cd spring-boot-package-war
-mvn clean package'''
-      }
-    }
-
-    stage('\'Increment-pom file\'') {
+    stage('incremant') {
       steps {
         sh '''cd spring-boot-package-war
 mvn build-helper:parse-version versions:set -DnewVersion=0.0.2.$BUILD_ID-SNAPSHOT versions:commit
+
+'''
+      }
+    }
+
+    stage('packege  {mvn clean packege}') {
+      steps {
+        sh '''cd spring-boot-package-war  
+mvn clean package
 '''
       }
     }
