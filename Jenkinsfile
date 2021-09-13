@@ -3,50 +3,41 @@ pipeline {
     node {
       label 'Centos_nodejs'
     }
-    stage('check out code') {
+ }
+  stages {
+    stage('CheckoutCode') {
       steps {
-        git(url: 'https://github.com/oren101/spring-boot-examples.git', branch: 'oren101-2_sol', changelog: true)
+        git(url: https://github.com/oren101/spring-boot-examples.git', branch: ' oren101-2_sol ', changelog: true)
       }
     }
 
-    stage('maven compile') {
+    stage('mvn compile') {
       steps {
         sh '''cd spring-boot-package-war
 mvn compile'''
       }
     }
 
-    stage('test') {
+    stage('Test {mvn test}') {
       steps {
-        sh '''cd spring-boot-package-war
-mvn test'''
         sh '''cd spring-boot-package-war
 mvn test'''
       }
     }
 
-    stage('incremant') {
+    stage('Package {mvn clean package}') {
+      steps {
+        sh '''cd spring-boot-package-war
+mvn clean package'''
+      }
+    }
+
+    stage('\'Increment-pom file\'') {
       steps {
         sh '''cd spring-boot-package-war
 mvn build-helper:parse-version versions:set -DnewVersion=0.0.2.$BUILD_ID-SNAPSHOT versions:commit
-
 '''
       }
     }
-
-    stage('packege  {mvn clean packege}') {
-      steps {
-        sh '''cd spring-boot-package-war  
-mvn clean package
-'''
-      }
-    }
-
-    stage('Slack & chuck') {
-      steps {
-        slackSend(message: 'new mvn build bitchesss', channel: 'devops2021', sendAsText: true)
-      }
-    }
-
   }
 }
