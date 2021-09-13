@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'Centos_nodejs'
+      label 'master'
     }
  }
   stages {
