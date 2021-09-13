@@ -40,5 +40,11 @@ mvn clean package
       }
     }
 
+    stage('Slack & chuck') {
+      steps {
+        slackSend(attachments: 'new mvn build bitchesss')
+      }
+    }
+
   }
 }
