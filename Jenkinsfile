@@ -51,10 +51,6 @@ mvn clean package'''
           steps {
             chuckNorris()
           }
-        }
-
-      }
     }
-
   }
 }
