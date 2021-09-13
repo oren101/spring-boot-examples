@@ -42,7 +42,7 @@ mvn clean package
 
     stage('Slack & chuck') {
       steps {
-        slackSend(attachments: 'new mvn build bitchesss')
+        slackSend(message: 'new mvn build bitchesss', channel: 'devops2021', sendAsText: true)
       }
     }
 
