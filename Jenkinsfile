@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('check out code') {
       steps {
-        git(url: 'https://github.com/oren101/spring-boot-examples.git', branch: 'oren101-2_sol', changelog: true, poll: true)
+        git(url: 'https://github.com/ronenl4940/spring-boot-examples.git', branch: 'ronen_oren_sol', changelog: true, poll: true)
       }
     }
 
