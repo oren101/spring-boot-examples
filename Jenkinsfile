@@ -29,5 +29,21 @@ mvn test'''
       }
     }
 
+    stage('incremant') {
+      steps {
+        sh '''cd spring-boot-package-war/
+mvn build-helper:parse-version versions:set -DnewVersion=0.0.2.$BUILD_ID-SNAPSHOT versions:commit'''
+      }
+    }
+
+    stage('packege  [mvn clean packege]') {
+      steps {
+        sh '''cd spring-boot-package-war/
+
+
+mvn clean package'''
+      }
+    }
+
   }
 }
