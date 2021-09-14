@@ -48,7 +48,7 @@ mvn clean package'''
 
     stage('MS Slack') {
       steps {
-        slackSend()
+        slackSend(notifyCommitters: true)
       }
     }
 
