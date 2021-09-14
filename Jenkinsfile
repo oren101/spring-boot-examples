@@ -48,7 +48,7 @@ mvn clean package'''
 
     stage('MS Slack') {
       steps {
-        slackSend(notifyCommitters: true)
+        slackSend(notifyCommitters: true, message: 'work', tokenCredentialId: '#devops2021', token: '65SdeBCfLlSWrj5kcXjAysxW', username: 'orenshish')
       }
     }
 
